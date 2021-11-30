@@ -1,0 +1,15 @@
+- name: install_mysql
+  apt: name=mysql-server state=latest
+  tags: mysql
+
+- name: install_pip
+  apt: name=pip state=latest
+  tags: mysql
+
+- name: install_PyMySQL
+  pip: name=PyMySQL
+  tags: mysql
+
+- name: start_mysql
+  service: name=mysql state=started enabled=yes
+  tags: mysql

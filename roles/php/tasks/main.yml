@@ -1,0 +1,15 @@
+- name: install_php
+  apt:
+    name: [php, php-mysql, php-mbstring, php-xml]
+    state: latest
+  notify: restart_apache
+  tags: php
+
+- name: set_timezone
+  ini_file: >
+    dest=/etc/php.ini
+    section=Date
+    option=date.timezone
+    value='"Asia/Tokyo"'
+  notify: restart_apache
+  tags: php

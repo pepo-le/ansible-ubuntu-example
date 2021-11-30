@@ -1,0 +1,2 @@
+- name: install_vim
+  apt: name=vim state=latest

@@ -1,0 +1,7 @@
+- name: install_postfix
+  apt: name=postfix state=latest
+  tags: postfix
+
+- name: start_postfix
+  service: name=postfix state=started enabled=yes
+  tags: postfix

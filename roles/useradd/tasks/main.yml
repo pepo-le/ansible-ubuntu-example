@@ -1,0 +1,8 @@
+- name: add_user
+  user:
+    name: "{{item.key}}"
+    password: "{{item.value.password | password_hash('sha512')}}"
+    groups: "{{item.value.groups}}"
+    update_password: on_create
+  with_dict: "{{users}}"
+  tags: useradd

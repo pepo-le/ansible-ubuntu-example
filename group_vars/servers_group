@@ -1,0 +1,25 @@
+root_address: info@example.com
+
+hostname:
+  example.com
+
+users:
+  foo:
+    password: "{{ foo_user_password }}"
+    groups:
+  www:
+    password: "{{ www_user_password }}"
+    groups:
+    shell: /sbin/nologin
+
+auth_users:
+  foo:
+    key: ~/.ssh/example/foo/id_rsa.pub
+
+web_users:
+  www:
+
+www:
+  blog:
+    url: example.com
+    dir: /home/www/public_html/blog

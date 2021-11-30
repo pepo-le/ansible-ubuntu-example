@@ -1,0 +1,4 @@
+- name: install_apache
+  apt: name=apache2 state=latest
+  notify: [restart_apache, allow_http, allow_https]
+  tags: apache

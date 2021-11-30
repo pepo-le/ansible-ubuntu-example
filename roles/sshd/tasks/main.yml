@@ -1,0 +1,30 @@
+- name: forbid_root_login
+  lineinfile: >-
+    dest='/etc/ssh/sshd_config'
+    state=present
+    backup=yes
+    backrefs=yes
+    regexp='^#PermitRootLogin.*'
+    line='PermitRootLogin no'
+  notify: restart_sshd
+  tags: sshd
+
+- name: enable_pubkey
+  lineinfile: >-
+    dest='/etc/ssh/sshd_config'
+    state=present
+    backrefs=yes
+    regexp='^#PubkeyAuthentication\syes'
+    line='PubkeyAuthentication yes'
+  notify: restart_sshd
+  tags: sshd
+
+- name: forbid_password_login
+  lineinfile: >-
+    dest='/etc/ssh/sshd_config'
+    state=present
+    backrefs=yes
+    regexp='^PasswordAuthentication\syes'
+    line='PasswordAuthentication no'
+  notify: restart_sshd
+  tags: sshd

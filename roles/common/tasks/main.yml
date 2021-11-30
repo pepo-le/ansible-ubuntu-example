@@ -1,0 +1,19 @@
+- name: apt-update
+  apt: update_cache=yes
+  tags: common
+
+- name: apt-upgrade
+  apt: upgrade=yes
+  tags: common
+
+- name: enable_firewalld
+  ufw:
+    state: enabled
+    policy: deny
+  tags: common
+
+- name: allow_ssh
+  ufw:
+    rule: allow
+    port: '22'
+  tags: common

@@ -1,0 +1,7 @@
+- name: register_pubkey
+  authorized_key:
+    user: "{{item.key}}"
+    state: present
+    key: "{{lookup('file', item.value.key)}}"
+  with_dict: "{{auth_users}}"
+  tags: authorized-key

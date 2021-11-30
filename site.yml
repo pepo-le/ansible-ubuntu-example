@@ -1,0 +1,16 @@
+- name: initialize
+  hosts: all
+  become: yes
+  vars_files:
+    - secret.yml
+  roles:
+    - common
+    - sshd
+    - useradd
+    - authorized_key
+    - postfix
+    - apache
+    - mysql
+    - php
+    - logwatch
+    - vim

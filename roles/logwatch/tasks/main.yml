@@ -1,0 +1,23 @@
+- name: check_sendmail
+  shell: type sendmail | wc -l
+  register: sm
+
+- name: check_root-address
+  shell: cat /etc/aliases | grep "root:\s{{root_address}}" | wc -l
+  register: ra
+  when: sm.stdout == "1"
+  tags: logwatch
+
+- name: set_root-address
+  shell: echo "\nroot:""	{{root_address}}" >> /etc/aliases
+  when: ra.stdout == "0"
+  tags: logwatch
+
+- name: newaliases
+  command: newaliases
+  when: ra.stdout == "0"
+  tags: logwatch
+
+- name: install_logwatch
+  apt: name=logwatch
+  tags: logwatch
